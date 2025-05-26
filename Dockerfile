@@ -21,8 +21,9 @@ RUN apt update \
     && apt install -y man-db \
     && apt install -y unminimize \
     && apt install curl wget -y \
-    && apt install -y python-is-python3 \
-    && apt install -y python3-pip
+    && apt install -y python3 \
+    && apt install -y python3-pip \
+    && apt install -y python-is-python3 
 
 RUN yes | unminimize 
 
