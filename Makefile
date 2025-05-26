@@ -1,4 +1,13 @@
 .PHONY: all clean run
-run:
-	docker build -t ubuntu-custom:0.2 .
 
+all:
+	docker build -t ubuntu-custom .
+
+run: 
+# 创建一个容器
+	docker run -itd  --name u001 --restart always ubuntu-custom 
+	docker exec -it u001 /bin/bash
+
+clean:
+	docker stop u001
+	docker rm u001
