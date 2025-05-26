@@ -20,7 +20,9 @@ RUN apt update \
     && apt install bash-completion -y \
     && apt install -y man-db \
     && apt install -y unminimize \
-    && apt install curl wget -y 
+    && apt install curl wget -y \
+    && apt install -y python-is-python3 \
+    && apt install -y python3-pip
 
 RUN yes | unminimize 
 
