@@ -17,17 +17,23 @@ RUN apt clean all
 
 RUN apt update \
     && apt install -y vim \
-    && apt install bash-completion -y \
+    && apt install -y bash-completion \
     && apt install -y man-db \
+    && apt install -y manpages-zh \
     && apt install -y unminimize \
     && apt install -y curl wget  \
     && apt install -y python3 \
     && apt install -y python3-pip \
-    && apt install -y python-is-python3 
+    && apt install -y python-is-python3 \
+    && apt install -y file \
+    && apt install -y tree 
 
 RUN yes | unminimize 
+RUN pip config set global.index-url 'https://mirrors.aliyun.com/pypi/simple' 
+
 
 # 配置vim
+RUN echo    "\" 设置显示行号" >> /etc/vim/vimrc
 RUN echo    "set nu" >> /etc/vim/vimrc
 
 

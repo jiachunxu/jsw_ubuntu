@@ -1,13 +1,15 @@
 .PHONY: all clean run
 
+img_name=ubuntu-custom
+container_name=u001
 all:
-	docker build -t ubuntu-custom .
+	docker build -t $(img_name) .
 
 run: 
 # 创建一个容器
-	docker run -itd  --name u001 --restart always ubuntu-custom 
-	docker exec -it u001 /bin/bash
+	docker run -itd  --name $(container_name) --privileged --restart always $(img_name) 
+	docker exec -it $(container_name) /bin/bash
 
 clean:
-	docker stop u001
-	docker rm u001
+	docker stop $(container_name)
+	docker rm $(container_name)
