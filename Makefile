@@ -1,6 +1,6 @@
 .PHONY: all clean run
 
-img_name=ubuntu-custom
+img_name=jsw_ubuntu
 container_name=u001
 all:
 	docker build -t $(img_name) .
@@ -13,3 +13,4 @@ run:
 clean:
 	docker stop $(container_name)
 	docker rm $(container_name)
+	docker rmi $(img_name)

@@ -8,7 +8,7 @@ RUN cp /etc/apt/sources.list.d/ubuntu.sources \
 RUN rm /etc/apt/apt.conf.d/docker-clean
 # 将本地文件复制到镜像中
 ADD ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources
-ENV LANG=C.UTF-8
+ENV LANG=zh_CN.UTF-8
 # 设置时区
 ENV TZ=Asia/Shanghai
 
@@ -26,7 +26,8 @@ RUN apt update \
     && apt install -y python3-pip \
     && apt install -y python-is-python3 \
     && apt install -y file \
-    && apt install -y tree 
+    && apt install -y tree \
+    && apt install -y language-pack-zh-hans
 
 RUN yes | unminimize 
 RUN pip config set global.index-url 'https://mirrors.aliyun.com/pypi/simple' 
