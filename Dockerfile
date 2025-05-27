@@ -29,7 +29,7 @@ RUN apt update \
     && apt install -y tree \
     && apt install -y language-pack-zh-hans
 
-RUN yes | unminimize 
+# RUN yes | unminimize 
 RUN pip config set global.index-url 'https://mirrors.aliyun.com/pypi/simple' 
 
 
