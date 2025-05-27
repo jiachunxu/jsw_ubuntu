@@ -21,7 +21,6 @@ RUN apt update \
     && apt install -y man-db \
     && apt install -y manpages-zh \
     && apt install -y unminimize \
-<<<<<<< HEAD
     && apt install -y curl wget  \
     && apt install -y python3 \
     && apt install -y python3-pip \
@@ -32,12 +31,6 @@ RUN apt update \
 
 # RUN yes | unminimize 
 RUN pip config set global.index-url 'https://mirrors.aliyun.com/pypi/simple' 
-=======
-    && apt install curl wget -y \
-    && apt install -y python3 \
-    && apt install -y python3-pip \
-    && apt install -y python-is-python3 
->>>>>>> fed592dcd6b2ef61eefbb2c86764517bff7f6228
 
 
 # 配置vim
