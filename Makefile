@@ -13,4 +13,4 @@ run:
 clean:
 	docker stop $(container_name)
 	docker rm $(container_name)
-	docker rmi $(img_name)
+	# docker rmi $(img_name)

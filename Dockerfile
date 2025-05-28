@@ -5,18 +5,22 @@ RUN cp /etc/apt/sources.list.d/ubuntu.sources \
     /etc/apt/sources.list.d/ubuntu.sources.bak
 
 # apt install 包 tab补全, 必须删除 /etc/apt/apt.conf.d/docker-clean
+# RUN rm /etc/apt/apt.conf.d/docker-clean
+#  将 /etc/apt/apt.conf.d/docker-clean 中的 Dir::Cache::pkgcache ""; Dir::Cache::srcpkgcache ""; 注释掉
+# RUN sed -i 's/^Dir::Cache::pkgcache ""; Dir::Cache::srcpkgcache "";/#&/' /etc/apt/apt.conf.d/docker-clean
+
 RUN rm /etc/apt/apt.conf.d/docker-clean
-# 将本地文件复制到镜像中
+ADD docker-clean /etc/apt/apt.conf.d/docker-clean
+
+
+# 镜像地址修改
 ADD ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources
+
+
 ENV LANG=zh_CN.UTF-8
-# 设置时区
 ENV TZ=Asia/Shanghai
 
-RUN apt clean all
-# 安装软件
-
 RUN apt update 
-
 RUN apt install -y unminimize 
 
 RUN yes | unminimize 
