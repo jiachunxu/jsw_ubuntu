@@ -21,17 +21,37 @@ RUN apt install -y unminimize
 
 RUN yes | unminimize 
 
-RUN apt install -y vim  bash-completion  man-db  manpages-zh curl wget   \
+RUN apt install -y vim bash-completion  man-db  manpages-zh curl wget   \
     python3 python3-pip python-is-python3 file tree strace ltrace \
-    language-pack-zh-hans
+    language-pack-zh-hans 
 
 RUN pip config set global.index-url 'https://mirrors.aliyun.com/pypi/simple' 
 
 # 节省点空间 
-# RUN rm -rv  /usr/share/man/zh_TW \
-#             /usr/share/man/cs \
-#             /usr/share/man/da \
-#             /usr/share/man/fi 
+RUN  rm -rvf /usr/share/man/cs  \
+    /usr/share/man/es \
+    /usr/share/man/hu \
+    /usr/share/man/ja \
+    /usr/share/man/pt \
+    /usr/share/man/ru \
+    /usr/share/man/sv \
+    /usr/share/man/da \
+    /usr/share/man/fi \
+    /usr/share/man/id \
+    /usr/share/man/ko \
+    /usr/share/man/nl \
+    /usr/share/man/pt_BR \
+    /usr/share/man/sl \
+    /usr/share/man/tr \
+    /usr/share/man/zh_TW \
+    /usr/share/man/de \
+    /usr/share/man/fr \
+    /usr/share/man/it \
+    /usr/share/man/pl \
+    /usr/share/man/ro \
+    /usr/share/man/sr \
+    /usr/share/man/uk 
+
 
 # 配置vim
 RUN echo    "\" 设置显示行号" >> /etc/vim/vimrc
