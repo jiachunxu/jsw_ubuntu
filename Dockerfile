@@ -15,23 +15,23 @@ ENV TZ=Asia/Shanghai
 RUN apt clean all
 # 安装软件
 
-RUN apt update \
-    && apt install -y vim \
-    && apt install -y bash-completion \
-    && apt install -y man-db \
-    && apt install -y manpages-zh \
-    && apt install -y unminimize \
-    && apt install -y curl wget  \
-    && apt install -y python3 \
-    && apt install -y python3-pip \
-    && apt install -y python-is-python3 \
-    && apt install -y file \
-    && apt install -y tree \
-    && apt install -y language-pack-zh-hans
+RUN apt update 
+
+RUN apt install -y unminimize 
 
 RUN yes | unminimize 
+
+RUN apt install -y vim  bash-completion  man-db  manpages-zh curl wget   \
+    python3 python3-pip python-is-python3 file tree strace ltrace \
+    language-pack-zh-hans
+
 RUN pip config set global.index-url 'https://mirrors.aliyun.com/pypi/simple' 
 
+# 节省点空间 
+# RUN rm -rv  /usr/share/man/zh_TW \
+#             /usr/share/man/cs \
+#             /usr/share/man/da \
+#             /usr/share/man/fi 
 
 # 配置vim
 RUN echo    "\" 设置显示行号" >> /etc/vim/vimrc
