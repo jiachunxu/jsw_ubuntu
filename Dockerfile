@@ -58,7 +58,7 @@ RUN  rm -rvf /usr/share/man/cs  \
 
 
 # 配置vim
-RUN echo    "\" 设置显示行号" >> /etc/vim/vimrc
+# RUN echo    "\" 设置显示行号" >> /etc/vim/vimrc
 RUN echo    "set nu" >> /etc/vim/vimrc
 
 
