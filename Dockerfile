@@ -4,6 +4,11 @@ FROM ubuntu:25.10
 RUN cp /etc/apt/sources.list.d/ubuntu.sources \
     /etc/apt/sources.list.d/ubuntu.sources.bak
 
+
+ENV LANG=zh_CN.UTF-8
+ENV TZ=Asia/Shanghai
+    
+
 # apt install 包 tab补全, 必须删除 /etc/apt/apt.conf.d/docker-clean
 # RUN rm /etc/apt/apt.conf.d/docker-clean
 # 或者 修改 /etc/apt/apt.conf.d/docker-clean ,查看本地 docker-clean
@@ -18,10 +23,7 @@ RUN apt update
 RUN apt install -y unminimize 
 RUN yes | unminimize 
 
-ENV LANG=zh_CN.UTF-8
-ENV TZ=Asia/Shanghai
-
-RUN apt install -y locales vim bash-completion  man-db  manpages-zh curl wget \
+RUN apt install -y locales vim bash-completion man-db manpages-zh curl wget \
     python3 python3-pip python-is-python3 file tree strace ltrace \
     language-pack-zh-hans 
 
@@ -58,9 +60,10 @@ RUN  rm -rvf /usr/share/man/cs  \
 
 
 # 配置vim
-# RUN echo    "\" 设置显示行号" >> /etc/vim/vimrc
+# 设置显示行号
 RUN echo    "set nu" >> /etc/vim/vimrc
 
+# tab 补全
 COPY bash-completion.tab  /tmp/bash-completion.tab
 RUN cat /tmp/bash-completion.tab >> /etc/bash.bashrc 
 RUN rm /tmp/bash-completion.tab
