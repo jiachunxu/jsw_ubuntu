@@ -6,7 +6,7 @@ container_name=u001
 all:
 	docker build -t $(img_name) .
 	# docker tag jsw_ubuntu jiacx/jsw_ubuntu
-	# docker push jiacx/jsw_ubuntu
+	docker push jiacx/jsw_ubuntu
 
 run:
 # 创建一个容器

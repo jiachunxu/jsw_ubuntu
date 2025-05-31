@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:25.10
 
 # 修改镜像地址 /etc/apt/sources.list.d/ubuntu.sources 备份 为 ubuntu.sources.bak
 RUN cp /etc/apt/sources.list.d/ubuntu.sources \
@@ -11,22 +11,23 @@ RUN cp /etc/apt/sources.list.d/ubuntu.sources \
 RUN rm /etc/apt/apt.conf.d/docker-clean
 ADD docker-clean /etc/apt/apt.conf.d/docker-clean
 
-
 # 镜像地址修改
 ADD ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources
 
+RUN apt update 
+RUN apt install -y unminimize 
+RUN yes | unminimize 
 
 ENV LANG=zh_CN.UTF-8
 ENV TZ=Asia/Shanghai
 
-RUN apt update 
-RUN apt install -y unminimize 
-
-RUN yes | unminimize 
-
-RUN apt install -y vim bash-completion  man-db  manpages-zh curl wget   \
+RUN apt install -y locales vim bash-completion  man-db  manpages-zh curl wget \
     python3 python3-pip python-is-python3 file tree strace ltrace \
     language-pack-zh-hans 
+
+# RUN locale-gen zh_CN.UTF-8
+# RUN update-locale LANG=zh_CN.UTF-8
+
 
 RUN pip config set global.index-url 'https://mirrors.aliyun.com/pypi/simple' 
 
