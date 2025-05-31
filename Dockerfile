@@ -61,13 +61,7 @@ RUN  rm -rvf /usr/share/man/cs  \
 # RUN echo    "\" 设置显示行号" >> /etc/vim/vimrc
 RUN echo    "set nu" >> /etc/vim/vimrc
 
+COPY bash_completion.tab  /tmp/bash_completion.tab
+RUN cat /tmp/bash_completion.tab >> /etc/bash.bashrc
+RUN rm /tmp/bash_completion.tab
 
-
-RUN echo    "# bash-completion tab补全" >> /etc/bash.bashrc
-RUN echo    "if ! shopt -oq posix; then" >> /etc/bash.bashrc  
-RUN echo    "   if [ -f /usr/share/bash-completion/bash_completion ]; then" >> /etc/bash.bashrc
-RUN echo    "       . /usr/share/bash-completion/bash_completion" >> /etc/bash.bashrc
-RUN echo    "   elif [ -f /etc/bash_completion ]; then" >> /etc/bash.bashrc
-RUN echo    "       . /etc/bash_completion" >> /etc/bash.bashrc
-RUN echo    "   fi" >> /etc/bash.bashrc
-RUN echo    "fi" >> /etc/bash.bashrc  
