@@ -6,8 +6,7 @@ RUN cp /etc/apt/sources.list.d/ubuntu.sources \
 
 # apt install 包 tab补全, 必须删除 /etc/apt/apt.conf.d/docker-clean
 # RUN rm /etc/apt/apt.conf.d/docker-clean
-#  将 /etc/apt/apt.conf.d/docker-clean 中的 Dir::Cache::pkgcache ""; Dir::Cache::srcpkgcache ""; 注释掉
-# RUN sed -i 's/^Dir::Cache::pkgcache ""; Dir::Cache::srcpkgcache "";/#&/' /etc/apt/apt.conf.d/docker-clean
+# 或者 修改 /etc/apt/apt.conf.d/docker-clean ,查看本地 docker-clean
 
 RUN rm /etc/apt/apt.conf.d/docker-clean
 ADD docker-clean /etc/apt/apt.conf.d/docker-clean
@@ -61,7 +60,7 @@ RUN  rm -rvf /usr/share/man/cs  \
 # RUN echo    "\" 设置显示行号" >> /etc/vim/vimrc
 RUN echo    "set nu" >> /etc/vim/vimrc
 
-COPY bash_completion.tab  /tmp/bash_completion.tab
-RUN cat /tmp/bash_completion.tab >> /etc/bash.bashrc
-RUN rm /tmp/bash_completion.tab
+COPY bash-completion.tab  /tmp/bash-completion.tab
+RUN cat /tmp/bash-completion.tab >> /etc/bash.bashrc 
+RUN rm /tmp/bash-completion.tab
 
