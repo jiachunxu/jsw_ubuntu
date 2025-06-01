@@ -7,7 +7,7 @@ RUN cp /etc/apt/sources.list.d/ubuntu.sources \
 
 ENV LANG=zh_CN.UTF-8
 ENV TZ=Asia/Shanghai
-    
+
 
 # apt install 包 tab补全, 必须删除 /etc/apt/apt.conf.d/docker-clean
 # RUN rm /etc/apt/apt.conf.d/docker-clean
