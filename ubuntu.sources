@@ -1,5 +1,5 @@
 Types: deb
-URIs: http://archive.ubuntu.com/ubuntu/
+URIs: http://mirrors.aliyun.com/ubuntu/
 Suites: questing questing-updates questing-backports
 Components: main universe restricted multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
