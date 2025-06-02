@@ -61,10 +61,11 @@ RUN  rm -rvf /usr/share/man/cs  \
 
 # 配置vim
 # 设置显示行号
-RUN echo    "set nu" >> /etc/vim/vimrc
+RUN echo "set nu" >> /etc/vim/vimrc
 
 # tab 补全
 COPY bash-completion.tab  /tmp/bash-completion.tab
-RUN cat /tmp/bash-completion.tab >> /etc/bash.bashrc 
-RUN rm /tmp/bash-completion.tab
+RUN cat /tmp/bash-completion.tab >> /etc/bash.bashrc \
+    && rm /tmp/bash-completion.tab
+
 
