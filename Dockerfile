@@ -18,13 +18,13 @@ ADD docker-clean /etc/apt/apt.conf.d/docker-clean
 # 镜像地址修改
 ADD ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources
 
-RUN apt update 
-RUN apt install -y unminimize 
+RUN apt update \
+    && apt install -y unminimize 
 RUN yes | unminimize 
 
 RUN apt install -y locales vim bash-completion man-db manpages-zh curl wget \
     python3 python3-pip python-is-python3 file tree strace ltrace \
-    language-pack-zh-hans 
+    language-pack-zh-hans golang net-tools
 
 # RUN locale-gen zh_CN.UTF-8
 # RUN update-locale LANG=zh_CN.UTF-8
@@ -60,7 +60,9 @@ RUN  rm -rvf /usr/share/man/cs  \
 
 # 配置vim
 # 设置显示行号
-RUN echo "set nu" >> /etc/vim/vimrc
+RUN echo "set nu" >> /etc/vim/vimrc \
+    # 
+    && echo "export GOPROXY=https://goproxy.io,direct" >> /etc/bash.bashrc
 
 # tab 补全
 COPY bash-completion.tab  /tmp/bash-completion.tab
