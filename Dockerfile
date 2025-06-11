@@ -6,7 +6,8 @@ RUN cp /etc/apt/sources.list.d/ubuntu.sources \
 
 
 ENV LANG=zh_CN.UTF-8 \
-    TZ=Asia/Shanghai
+    TZ=Asia/Shanghai \
+    GOPROXY=https://goproxy.io,direct
 
 # apt install 包 tab补全, 必须删除 /etc/apt/apt.conf.d/docker-clean
 # RUN rm /etc/apt/apt.conf.d/docker-clean
@@ -60,13 +61,13 @@ RUN  rm -rvf /usr/share/man/cs  \
 
 # 配置vim
 # 设置显示行号
-RUN echo "set nu" >> /etc/vim/vimrc \
-    # 
-    && echo "export GOPROXY=https://goproxy.io,direct" >> /etc/bash.bashrc
+RUN echo "set nu" >> /etc/vim/vimrc 
+
 
 # tab 补全
 COPY bash-completion.tab  /tmp/bash-completion.tab
 RUN cat /tmp/bash-completion.tab >> /etc/bash.bashrc \
     && rm /tmp/bash-completion.tab
 
-
+# 设置工作目录
+WORKDIR /root
